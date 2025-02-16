@@ -308,7 +308,34 @@ replace_negatives <- function(vec) {
 }
 v <- c(3, -5, 7, -2, 8, -10)
 print(replace_negatives(v))
-
-
+#
+#(iii) Write a function to sum the digits of a number.
+sum_digits <- function(n){
+  n <- abs(n)
+  sum <- 0
+  while (n>0){
+    sum <- sum + (n%%10)
+    n <- n%/% 10
+  }
+  return (sum)
+}
+print(sum_digits(8972))
+print(sum_digits(209))
+print(sum_digits(-400))
+#
+#ii)Write a function to calculate the factorial of a number using the Stirling’s approx-
+#imation:
+stirling_factorial <- function(n) {
+  if (n<0) {
+    print("Factorial is undefined for negative integers.")
+  }
+  pi_term <- sqrt(2*pi*n)
+  power_term <- (n / exp(1)) ^n
+  correction_term <-  1 + (1 / (12 * n)) + (1 / (288 * n^2)) - 
+    (139 / (51840 * n^3)) - (571 / (2488320 * n^4))
+  return (pi_term * power_term * correction_term)
+}
+print(stirling_factorial(5))
+print(stirling_factorial(10))
 
 

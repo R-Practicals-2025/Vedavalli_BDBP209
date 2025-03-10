@@ -1,3 +1,93 @@
+#March 7 2025
+#Ex 1
+#(1) Plot the point (2,4) with square point character type and magenta color.
+x=2
+y=4
+plot(x,y,pch=15,col='magenta',main='Ex1 simple plot',col.main='navy')
+
+#Ex2
+#Create a seqence of function values corresponding to sin(x) and cos(x) function from −π
+#to π and plot the two functions on the same graph with appropriate titles, axes labels,
+#blue color for the sine curve, red color for the cosine curve, star point character type for
+#sine, cross type point character for cosine overlaid by lines joining the points.
+x=seq(-pi,pi,0.1)
+x_axis=sin(x)
+y_axis=cos(x)
+plot(x,y_axis,col='red',type='o',pch=4,main="Sine and cosine curves",col.main='forestgreen') #cosine
+points(x,x_axis,pch=8,col='blue') #sine
+
+#Ex3
+#(3) Reproduce the bar graph type of plot in Fig. 4.2.1 in the Biostatistics book by Daniel
+#using the appropriate settings for the appearance.
+x=c(1,2,3,4,5,6,7,8)
+y=c(.2088,.1582,.1313,.1313,.1953,.1246,.0135,.0370)
+a=barplot(names.arg=x,y, main="Bar Plot", 
+          xlab="x (Number of assistance programs)", ylab="Probability", ylim = c(0, 0.25),
+          yaxt="n", xaxt = "n", space=0.6) 
+
+axis(1, at = a, labels =x, tcl = 0.3, cex.axis = 0.9)
+axis(2, tick = TRUE, tcl = 0.3, las=2) 
+abline(h=0,lwd=3)
+#plot(x,y,type="h",lwd=10)
+#Ex4
+#(4) Make a 2x3 grid of 6 graphs with the following specifications and their respective titles
+#4.1
+
+# Set up a 2x3 plotting grid
+par(mfrow=c(2,3))
+
+# (i) x vs cos(x) with red color and lines
+x <- seq(-pi, pi, length.out=100)
+plot(x, cos(x), type='l', col='red', lwd=2, main="Cos(x)", xlab="x", ylab="cos(x)")
+
+# (ii) x vs (x^2 / 3) + 4.2 with violet color, points and lines, linewidth 2 and linetype 1
+x <- seq(-5, 5, length.out=100)
+y <- (x^2 / 3) + 4.2
+plot(x, y, type='o', col='purple', lwd=2, lty=1, pch=16, main="Quadratic", xlab="x", ylab="(x^2 / 3) + 4.2")
+
+# (iii) and (iv)
+
+# Custom function to compute binomial probability using factorial
+binomial_prob <- function(k, n, p) {
+  binomial_coeff <- factorial(n) / (factorial(k) * factorial(n - k))
+  return(binomial_coeff * (p^k) * ((1 - p)^(n - k)))
+}
+
+# Set parameters for first plot (p=0.3)
+n <- 12
+p <- 0.3
+x_vals <- 0:n
+
+# Compute probabilities
+probs <- sapply(x_vals, function(k) binomial_prob(k, n, p))
+
+# Plot histogram for Binomial distribution (p=0.3)
+barplot(probs, names.arg = x_vals, col = "pink", border = "black",
+        main = paste("Binomial Dist (n=", n, ", p=", p, ")"), 
+        xlab = "Number of Successes", ylab = "Probability")
+
+# Set parameters for second plot (p=0.8)
+p <- 0.8
+probs <- sapply(x_vals, function(k) binomial_prob(k, n, p))
+
+# Plot histogram for Binomial distribution (p=0.8)
+barplot(probs, names.arg = x_vals, col = "pink", border = "black",
+        main = paste("Binomial Dist (n=", n, ", p=", p, ")"), 
+        xlab = "Number of Successes", ylab = "Probability")
+
+
+# (v) Histogram plot using type='h' option
+x <- seq(1, 10, 0.5)
+y <- 50*x / (x + 2)
+colors <- rep(c("blue", "orange"), length.out=length(x))
+plot(x, y, type='h', col=colors, lwd=2, main="Histogram", xlab="x", ylab="50x / (x+2)")
+
+# (vi) x vs log(x) with orange color and ‘step’ linetype
+x <- seq(1, 10, length.out=100)  # Avoid log(0)
+plot(x, log(x), type='s', col='orange', lwd=2, main="Log(x) Step", xlab="x", ylab="log(x)")
+
+par(mfrow = c(1, 1))
+#
 #Ex 5
 #(5) Write a script to recreate the plot in the slide with the plot title ’This is a graph’.
 x<-c(1,3,5,7,9,11)
